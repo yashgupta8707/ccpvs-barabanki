@@ -491,3 +491,10 @@ textarea { min-height: 130px; resize: vertical; }
 .member:first-child .post [lang] { color: rgba(255,255,255,.8); }
 @media (max-width: 1200px) { .members { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px) { .members { grid-template-columns: 1fr 1fr; gap: 12px; } .member { padding: 20px 10px; } .member img { width: 96px; height: 116px; } .member .post [lang] { display: none; } }
+.member { display: flex; flex-direction: column; align-items: center; }
+.member-contact { list-style: none; padding: 16px 0 0; margin: 16px 0 0; border-top: 1px solid var(--line); width: 100%; text-align: left; display: grid; gap: 10px; font-size: .82rem; }
+.member-contact li { display: flex; gap: 8px; align-items: flex-start; color: var(--text); }
+.member-contact svg { flex: none; width: 15px; height: 15px; margin-top: 2px; color: var(--blue); }
+.member-contact a { color: var(--text); overflow-wrap: break-word; min-width: 0; }
+.member-contact a:hover { color: var(--blue); }
+@media (max-width: 620px) { .members { grid-template-columns: 1fr; } .member .post [lang] { display: inline; } }
