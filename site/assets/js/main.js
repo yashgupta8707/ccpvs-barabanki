@@ -13,7 +13,18 @@
       var open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') nav.classList.remove('open'); });
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      var drop = a.closest('.nav-drop');
+      if (drop && a.closest('.drop-menu')) {
+        if (document.activeElement) document.activeElement.blur();
+        drop.classList.add('closed');
+        drop.addEventListener('mouseleave', function () { drop.classList.remove('closed'); }, { once: true });
+      }
+    });
     var backdrop = document.querySelector('.nav-backdrop');
     if (backdrop) backdrop.addEventListener('click', function () { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   }

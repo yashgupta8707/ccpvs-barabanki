@@ -48,6 +48,7 @@ ICONS = {
     "eye": '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
     "briefcase": '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
     "map": '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
+    "chevron": '<path d="m6 9 6 6 6-6"/>',
     "download": '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
     "whatsapp": None,  # filled glyph, handled separately
 }
@@ -69,7 +70,13 @@ NAV = [
     ("facilities", "facilities.html", "Facilities"),
     ("admissions", "admissions.html", "Admissions"),
     ("gallery", "gallery.html", "Gallery"),
-    ("administration", "administration.html", "Administration"),
+    ("administration", "administration.html", "Administration", [
+        ("administration.html#committee", "Management Committee"),
+        ("administration.html#faculty", "Principal &amp; Faculty"),
+        ("administration.html#staff", "Non-Teaching Staff"),
+        ("administration.html#registration", "Society Registration"),
+        ("administration.html#noc", "Govt. Essentiality Certificate (NOC)"),
+    ]),
     ("contact", "contact.html", "Contact"),
 ]
 
@@ -192,10 +199,17 @@ def build_page(src):
     meta = dict(line.split(": ", 1) for line in m.group(1).splitlines())
     body = text[m.end():]
     active_attr = ' class="active" aria-current="page"'
-    nav = "\n".join(
-        '      <a href="%s"%s>%s</a>' % (href, active_attr if key == meta["active"] else "", label)
-        for key, href, label in NAV
-    )
+    items = []
+    for key, href, label, *sub in NAV:
+        attr = active_attr if key == meta["active"] else ""
+        if not sub:
+            items.append('      <a href="%s"%s>%s</a>' % (href, attr, label))
+            continue
+        links = "\n".join('          <a href="%s">%s</a>' % (h, l) for h, l in sub[0])
+        items.append('      <div class="nav-drop">\n'
+                     '        <a href="%s"%s aria-haspopup="true">%s {{icon:chevron}}</a>\n'
+                     '        <div class="drop-menu">\n%s\n        </div>\n      </div>' % (href, attr, label, links))
+    nav = "\n".join(items)
     html = (HEAD.format(title=meta["title"], description=meta["description"])
             + HEADER.replace("{nav}", nav) + body + FOOTER)
     out = SITE / (src.stem + ".html")
