@@ -1,0 +1,10 @@
+campus.jpg, logo-*      : supplied by the college (real campus photo / logo)
+All other photos        : Unsplash (free Unsplash License, no attribution required)
+  farmer-cow   fh-75qakpj8     calf        4e0Ct3yn1Mg    lab-microscope cK0hjNSgnS4
+  lab          _9xRHrMOjeg     cattle-road 2PaY55VF8E8    herder         a880S9Ha0Ak
+  oxen-field   37eRcnDgqSo     vet-care    83HBHD-VT7M    lecture        LscaHTQsmIY
+  students     kp7qkHTgSKc     library     38BaYdWSh4A    poultry        7VlJ93lYVWI
+  goats        Noh7YrcLeTg     vials       KMvoHcB-w5g    pharmacy       mLaIFEtUZFs
+  barn-cows    zas_6gVZ2pA     cow-street  LJyF_2Et4D4    classroom      r_UZcR2VFqE
+  (view at https://unsplash.com/photos/<id>)
+Replace stock photos with real campus photos as they become available.
