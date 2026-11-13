@@ -69,6 +69,7 @@ NAV = [
     ("facilities", "facilities.html", "Facilities"),
     ("admissions", "admissions.html", "Admissions"),
     ("gallery", "gallery.html", "Gallery"),
+    ("administration", "administration.html", "Administration"),
     ("contact", "contact.html", "Contact"),
 ]
 
@@ -143,6 +144,7 @@ FOOTER = """</main>
           <li><a href="facilities.html">Campus &amp; Facilities</a></li>
           <li><a href="admissions.html">Admissions</a></li>
           <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="administration.html">Administration</a></li>
         </ul>
       </div>
       <div>
